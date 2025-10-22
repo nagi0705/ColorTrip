@@ -5,6 +5,7 @@ import {
   StyleSheet,
   ViewStyle,
 } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export interface ProgressBarProps {
   currentStep: number;
@@ -37,7 +38,10 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
       
       <View style={styles.barContainer}>
         <View style={styles.backgroundBar}>
-          <View
+          <LinearGradient
+            colors={['#FF6B9D', '#C44569', '#F8B500', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
             style={[
               styles.progressBar,
               {
@@ -50,16 +54,24 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
       
       {showText && (
         <View style={styles.stepDots}>
-          {Array.from({ length: totalSteps }, (_, index) => (
-            <View
-              key={index}
-              style={[
-                styles.dot,
-                index < currentStep && styles.completedDot,
-                index === currentStep - 1 && styles.currentDot,
-              ]}
-            />
-          ))}
+          {Array.from({ length: totalSteps }, (_, index) => {
+            const rainbowColors = ['#FF6B9D', '#C44569', '#F8B500', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD', '#98FB98'];
+            const isCompleted = index < currentStep;
+            const isCurrent = index === currentStep - 1;
+            
+            return (
+              <View
+                key={index}
+                style={[
+                  styles.dot,
+                  isCompleted && styles.completedDot,
+                  isCurrent && styles.currentDot,
+                  isCompleted && { backgroundColor: rainbowColors[index % rainbowColors.length] },
+                  isCurrent && { backgroundColor: rainbowColors[index % rainbowColors.length] },
+                ]}
+              />
+            );
+          })}
         </View>
       )}
     </View>
@@ -69,67 +81,92 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    paddingVertical: 8,
+    paddingVertical: 12,
   },
   textContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 8,
+    marginBottom: 12,
   },
   progressText: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#6B7280',
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#FF6B9D',
   },
   percentageText: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#8B5CF6',
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#C44569',
   },
   barContainer: {
     width: '100%',
-    marginBottom: 8,
+    marginBottom: 12,
   },
   backgroundBar: {
     width: '100%',
-    height: 8,
-    backgroundColor: '#E5E7EB',
-    borderRadius: 4,
+    height: 12,
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+    borderRadius: 8,
     overflow: 'hidden',
-  },
-  progressBar: {
-    height: '100%',
-    backgroundColor: '#8B5CF6',
-    borderRadius: 4,
-    shadowColor: '#8B5CF6',
+    shadowColor: '#FF6B9D',
     shadowOffset: {
       width: 0,
       height: 2,
     },
-    shadowOpacity: 0.3,
+    shadowOpacity: 0.2,
     shadowRadius: 4,
     elevation: 2,
+  },
+  progressBar: {
+    height: '100%',
+    borderRadius: 8,
+    shadowColor: '#FF6B9D',
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.4,
+    shadowRadius: 6,
+    elevation: 4,
   },
   stepDots: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    gap: 8,
+    gap: 10,
   },
   dot: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: '#D1D5DB',
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+    borderWidth: 2,
+    borderColor: 'rgba(255, 255, 255, 0.8)',
   },
   completedDot: {
-    backgroundColor: '#8B5CF6',
+    borderColor: '#FF6B9D',
+    shadowColor: '#FF6B9D',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 3,
+    elevation: 3,
   },
   currentDot: {
-    backgroundColor: '#8B5CF6',
-    width: 12,
-    height: 12,
-    borderRadius: 6,
+    borderColor: '#FF6B9D',
+    width: 14,
+    height: 14,
+    borderRadius: 7,
+    shadowColor: '#FF6B9D',
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.4,
+    shadowRadius: 4,
+    elevation: 4,
   },
 });
