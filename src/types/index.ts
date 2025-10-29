@@ -1,4 +1,5 @@
 // ColorTrip アプリの型定義
+import { ImageSourcePropType } from 'react-native';
 
 // パーソナルカラータイプ
 export type PersonalColorType = 'warm' | 'cool' | 'neutral';
@@ -19,7 +20,7 @@ export interface PaletteInfo {
   nameEn: string;
   tagline: string;
   description: string;
-  imagePath: string;
+  imagePath: ImageSourcePropType;
   personalColor: PersonalColorType;
   colorFeatures: ColorFeatures;
   recommendedFor: string[];

@@ -154,7 +154,7 @@ export const ResultScreen: React.FC<ResultScreenProps> = ({ navigation, route })
             onPress={handleRetry}
             variant="outline"
             size="medium"
-            style={[styles.actionButton, { borderColor: '#FF6B9D', borderWidth: 2 }]}
+            style={StyleSheet.flatten([styles.actionButton, { borderColor: '#FF6B9D', borderWidth: 2 }])}
             textStyle={{ color: '#FF6B9D' }}
           />
           <Button
@@ -162,7 +162,7 @@ export const ResultScreen: React.FC<ResultScreenProps> = ({ navigation, route })
             onPress={handleGoHome}
             variant="secondary"
             size="medium"
-            style={[styles.actionButton, { backgroundColor: '#4ECDC4' }]}
+            style={StyleSheet.flatten([styles.actionButton, { backgroundColor: '#4ECDC4' }])}
             textStyle={{ color: '#FFFFFF' }}
           />
         </View>
