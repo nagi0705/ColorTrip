@@ -1,12 +1,15 @@
 import React from 'react';
 import { AppNavigator } from './src/navigation/AppNavigator';
 import { DiagnosisProvider } from './src/context/DiagnosisContext';
+import { ThemeProvider } from './src/context/ThemeContext';
 
 export default function App() {
   return (
-    <DiagnosisProvider>
-      <AppNavigator />
-    </DiagnosisProvider>
+    <ThemeProvider>
+      <DiagnosisProvider>
+        <AppNavigator />
+      </DiagnosisProvider>
+    </ThemeProvider>
   );
 }
 
