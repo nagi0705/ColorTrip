@@ -1,0 +1,65 @@
+{
+  "common": {
+    "next": "Next",
+    "back": "Back",
+    "cancel": "Cancel",
+    "ok": "OK",
+    "loading": "Loading...",
+    "error": "Error",
+    "retry": "Retry"
+  },
+  "home": {
+    "title": "ColorTrip",
+    "subtitle": "Find your colors from cities around the world",
+    "mainTitle": "Find the perfect\nEyeshadow Palette for You",
+    "description": "Discover your ideal color palette\nfrom 10 world-famous cities with\nFOCALLURE GO TRAVEL palette",
+    "feature1": "9 Questions",
+    "feature2": "10 City Palettes",
+    "feature3": "About 2 minutes",
+    "startButton": "Start Diagnosis",
+    "note": "Diagnosis based on personal colors and preferences"
+  },
+  "question": {
+    "progress": "Question {{current}} / {{total}}",
+    "category": {
+      "personal-color": "Personal Color",
+      "preference": "Preference",
+      "situation": "Situation"
+    },
+    "questionNumber": "Question {{number}}",
+    "next": "Next",
+    "finish": "See Results"
+  },
+  "result": {
+    "title": "Results",
+    "subtitle": "We found the perfect palette for you!",
+    "no1Recommend": "No.1 Recommended",
+    "matchPercentage": "{{percentage}}% Match!",
+    "reasonTitle": "Why this palette?",
+    "viewDetail": "View Details",
+    "otherRecommend": "Other Recommendations",
+    "match": "{{percentage}}% Match",
+    "retry": "Retry Diagnosis",
+    "goHome": "Back to Home",
+    "calculating": "Calculating results..."
+  },
+  "paletteDetail": {
+    "title": "Palette Details",
+    "colorDistribution": "Color Distribution",
+    "textureDistribution": "Texture Distribution",
+    "warmColors": "Warm Colors",
+    "coolColors": "Cool Colors",
+    "matte": "Matte",
+    "shimmer": "Shimmer",
+    "glitter": "Glitter",
+    "personalColor": "Personal Color Type",
+    "warmBase": "Yellow Base (Warm)",
+    "coolBase": "Blue Base (Cool)",
+    "neutral": "Neutral",
+    "characteristics": "Palette Characteristics",
+    "recommendedFor": "Recommended For",
+    "scenarios": "Recommended Scenarios",
+    "retry": "Retry Diagnosis"
+  }
+}
+
