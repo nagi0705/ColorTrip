@@ -127,3 +127,4 @@ export const usePulseAnimation = () => {
   return { pulse, animatedStyle };
 };
 
+
