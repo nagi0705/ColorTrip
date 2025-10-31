@@ -10,6 +10,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Button } from '../components/Button';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types/navigation';
+import { useDiagnosis } from '../context/DiagnosisContext';
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Home'>;
 
@@ -18,7 +19,10 @@ interface HomeScreenProps {
 }
 
 export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
+  const { startDiagnosis } = useDiagnosis();
+
   const handleStart = () => {
+    startDiagnosis(); // 診断開始を記録
     navigation.navigate('Question');
   };
 

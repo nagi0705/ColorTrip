@@ -16,6 +16,8 @@ import { ResultCard } from '../components/ResultCard';
 import { getTop3Results } from '../lib/diagnosis';
 import { getPaletteById } from '../lib/palettes';
 import { DiagnosisResult } from '../types';
+import { useDiagnosis } from '../context/DiagnosisContext';
+import { saveDiagnosisHistory } from '../lib/storage';
 
 type ResultScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Result'>;
 type ResultScreenRouteProp = RouteProp<RootStackParamList, 'Result'>;
@@ -27,6 +29,7 @@ interface ResultScreenProps {
 
 export const ResultScreen: React.FC<ResultScreenProps> = ({ navigation, route }) => {
   const { answers } = route.params;
+  const { endDiagnosis, startTime } = useDiagnosis();
   const [results, setResults] = useState<DiagnosisResult[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -35,7 +38,16 @@ export const ResultScreen: React.FC<ResultScreenProps> = ({ navigation, route })
     const calculatedResults = getTop3Results(answers);
     setResults(calculatedResults);
     setIsLoading(false);
-  }, [answers]);
+
+    // 診断終了を記録
+    endDiagnosis();
+
+    // AsyncStorageに保存（診断時間を計算）
+    if (startTime) {
+      const duration = Math.round((Date.now() - startTime.getTime()) / 1000); // 秒単位
+      saveDiagnosisHistory(calculatedResults, answers, duration);
+    }
+  }, [answers, endDiagnosis, startTime]);
 
   const handleRetry = () => {
     navigation.navigate('Question');
